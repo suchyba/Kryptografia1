@@ -5,8 +5,111 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kryptografia1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Podstawowe moduły" Height="450" Width="800">
+    <TabControl Margin="10">
+        <TabItem Header="Rail Fence">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyRailFenceTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
 
-    </Grid>
+                <Label Grid.Row="1" Margin="10">Klucz:</Label>
+                <TextBox Name="kluczRailFenceTextBox" Grid.Column="1" Grid.Row="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramRailFenceTextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujRailFenceButton" Click="szyfrujRailFence_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujRailFenceButton" Click="deszyfrujRailFenceButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Przestawienia macierzowe A">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyPrzestawieniaATextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="1" Margin="10">Klucz:</Label>
+                <TextBox Name="kluczPrzestawieniaATextBox" Grid.Column="1" Grid.Row="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramPrzestawieniaATextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujPrzestawieniaAButton" Click="szyfrujPrzestawieniaAButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujPrzestawieniaAButton" Click="deszyfrujPrzestawieniaAButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Przestawienia macierzowe B">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyPrzestawieniaBTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="1" Margin="10">Klucz:</Label>
+                <TextBox Name="kluczPrzestawieniaBTextBox" Grid.Column="1" Grid.Row="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramPrzestawieniaBTextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujPrzestawieniaBButton" Click="szyfrujPrzestawieniaBButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujPrzestawieniaBButton" Click="deszyfrujPrzestawieniaBButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Przestawienia macierzowe C">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyPrzestawieniaCTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="1" Margin="10">Klucz:</Label>
+                <TextBox Name="kluczPrzestawieniaCTextBox" Grid.Column="1" Grid.Row="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramPrzestawieniaCTextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujPrzestawieniaCButton" Click="szyfrujPrzestawieniaCButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujPrzestawieniaCButton" Click="deszyfrujPrzestawieniaCButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
