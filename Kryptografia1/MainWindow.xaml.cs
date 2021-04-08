@@ -233,9 +233,9 @@ namespace Kryptografia1
                 // szukanie najmniejszej litery, która nie znajduje się na liście
                 char? najmniejszy = null;
                 int najmniejszyIndex = 0;
-                for(int i = 0; i < slowo.Length; ++i)
+                for (int i = 0; i < slowo.Length; ++i)
                 {
-                    if((najmniejszy == null || slowo[i] < najmniejszy) && !klucz.Contains(i))
+                    if ((najmniejszy == null || slowo[i] < najmniejszy) && !klucz.Contains(i))
                     {
                         najmniejszy = slowo[i];
                         najmniejszyIndex = i;
@@ -272,9 +272,9 @@ namespace Kryptografia1
 
             // odczytanie wyniku
             StringBuilder wynik = new();
-            for(int i = 0; i < klucz.Length; ++i)
+            for (int i = 0; i < klucz.Length; ++i)
             {
-                for(int j = 0; j < wysokosc; ++j)
+                for (int j = 0; j < wysokosc; ++j)
                 {
                     if (tab[klucz[i], j] != null)
                         wynik.Append(tab[klucz[i], j]);
@@ -300,19 +300,19 @@ namespace Kryptografia1
                 tab[i, wysokosc - 1] = '0';
 
             int obecnaLitera = 0;
-            for(int i = 0; i < szerokosc; ++i)
+            for (int i = 0; i < szerokosc; ++i)
             {
-                for(int j = 0; j < wysokosc; ++j)
+                for (int j = 0; j < wysokosc; ++j)
                 {
-                    if(tab[klucz[i], j] != '0')
+                    if (tab[klucz[i], j] != '0')
                         tab[klucz[i], j] = szyfrogramPrzestawieniaBTextBox.Text[obecnaLitera++];
                 }
             }
 
             StringBuilder wynik = new();
-            for(int i = 0; i < wysokosc; ++i)
+            for (int i = 0; i < wysokosc; ++i)
             {
-                for(int j = 0; j < szerokosc; ++j)
+                for (int j = 0; j < szerokosc; ++j)
                 {
                     if (tab[j, i] != '0')
                         wynik.Append(tab[j, i]);
@@ -358,10 +358,11 @@ namespace Kryptografia1
             int obecnaLitera = 0;
             int obecnyWiersz = 0;
             int iterator = 0;
+            // wpisywanie liter w wiersze do momentu napotkania miejsca w którym znajduje się w słowie kluczu numer obecnego wiersza
             while (obecnaLitera < tekstJawny.Length)
             {
                 tab[obecnyWiersz][iterator] = tekstJawny[obecnaLitera++];
-                if(klucz[iterator] == obecnyWiersz && obecnaLitera < tekstJawny.Length)
+                if (klucz[iterator] == obecnyWiersz && obecnaLitera < tekstJawny.Length)
                 {
                     tab.Add(new char?[klucz.Length]);
                     ++obecnyWiersz;
@@ -371,10 +372,11 @@ namespace Kryptografia1
                     ++iterator;
             }
 
+            // odczytanie kolumnami w kolejności alfabetycznej liter w słowie kluczu
             StringBuilder wynik = new();
-            for(int i = 0; i < klucz.Length; ++i)
+            for (int i = 0; i < klucz.Length; ++i)
             {
-                for(int j = 0; j < tab.Count; ++j)
+                for (int j = 0; j < tab.Count; ++j)
                 {
                     if (tab[j][kolejnosc[i]] != null)
                         wynik.Append(tab[j][kolejnosc[i]]);
@@ -386,7 +388,143 @@ namespace Kryptografia1
 
         private void deszyfrujPrzestawieniaCButton_Click(object sender, RoutedEventArgs e)
         {
+            string szyfrogram = szyfrogramPrzestawieniaCTextBox.Text.Replace(" ", null);
+            int[] klucz = slowoDoKluczaC(kluczPrzestawieniaCTextBox.Text);
+            int[] kolejnosc = slowoDoKluczaB(kluczPrzestawieniaCTextBox.Text);
+            List<char?[]> tab = new();
+            tab.Add(new char?[klucz.Length]);
 
+            int obecnaLitera = 0;
+            int obecnyWiersz = 0;
+            int iterator = 0;
+
+            // wygenerowanie miejsc, gdzie będą litery
+            while (obecnaLitera < szyfrogram.Length)
+            {
+                tab[obecnyWiersz][iterator] = '0';
+                ++obecnaLitera;
+                if (klucz[iterator] == obecnyWiersz && obecnaLitera < szyfrogram.Length)
+                {
+                    tab.Add(new char?[klucz.Length]);
+                    ++obecnyWiersz;
+                    iterator = 0;
+                }
+                else
+                    ++iterator;
+            }
+            // wpisywanie liter kolumnami w kolejności odpowiadającej kolejności alfabetycznej liter w kluczu
+            obecnaLitera = 0;
+            for (int i = 0; i < klucz.Length; ++i)
+            {
+                for (int j = 0; j < tab.Count; ++j)
+                {
+                    if (tab[j][kolejnosc[i]] != null)
+                        tab[j][kolejnosc[i]] = szyfrogram[obecnaLitera++];
+                }
+            }
+            // odczytanie wierszami
+            StringBuilder wynik = new();
+            for (int i = 0; i < tab.Count; ++i)
+            {
+                for (int j = 0; j < klucz.Length; ++j)
+                {
+                    if (tab[i][j] != null)
+                        wynik.Append(tab[i][j]);
+                }
+            }
+
+            tekstJawnyPrzestawieniaCTextBox.Text = wynik.ToString();
+        }
+        private void szyfrujCezarButton_Click(object sender, RoutedEventArgs e)
+        {
+            int a = 0, b = 0, n = 0;
+            int.TryParse(kluczACezarTextBox.Text, out a);
+            int.TryParse(kluczBCezarTextBox.Text, out b);
+            int.TryParse(kluczNCezarTextBox.Text, out n);
+
+            if (a != 0 && b != 0 && n != 0)
+            {
+                StringBuilder wynik = new();
+                for (int i = 0; i < tekstJawnyCezarTextBox.Text.Length; ++i)
+                {
+                    // (ax + b) mod n
+                    wynik.Append((char)('A' + (((tekstJawnyCezarTextBox.Text[i] - 'A') * a + b) % n)));
+                }
+                szyfrogramCezarTextBox.Text = wynik.ToString();
+            }
+
+        }
+
+        // szukanie odwrotności w pierścieniu
+        int szukajOdwrotnosci(int a, int n)
+        {
+            for (int i = 0; i < n; ++i)
+            {
+                if ((i * a) % n == 1)
+                    return i;
+            }
+            return -1;
+        }
+
+        private void deszyfrujCezarButton_Click(object sender, RoutedEventArgs e)
+        {
+            int a = 0, b = 0, n = 0;
+            int.TryParse(kluczACezarTextBox.Text, out a);
+            int.TryParse(kluczBCezarTextBox.Text, out b);
+            int.TryParse(kluczNCezarTextBox.Text, out n);
+
+            if (a != 0 && b != 0 && n != 0)
+            {
+                int odwrotnoscA = szukajOdwrotnosci(a, n);
+
+                if (odwrotnoscA != -1)
+                {
+                    StringBuilder wynik = new();
+                    for (int i = 0; i < szyfrogramCezarTextBox.Text.Length; ++i)
+                    {
+                        // ((c + (n - b)) * a^-1) mod n
+                        wynik.Append((char)('A' + (((szyfrogramCezarTextBox.Text[i] - 'A') + (n - b)) * odwrotnoscA) % n));
+                    }
+                    tekstJawnyCezarTextBox.Text = wynik.ToString();
+                }
+            }
+        }
+
+        string szyfrujVigener(string tekstJawny, string klucz)
+        {
+            StringBuilder wynik = new();
+            for (int i = 0; i < tekstJawny.Length; ++i)
+            {
+                int przesuniecie = tekstJawny[i] - 'A';
+                int pozycja = klucz[i % klucz.Length] - 'A';
+                char znak = (char)('A' + (przesuniecie + pozycja) % 26);
+                wynik.Append(znak);
+            }
+            return wynik.ToString();
+        }
+
+        private void szyfrujVigenerButton_Click(object sender, RoutedEventArgs e)
+        {
+            string tekstJawny = tekstJawnyVigenerTextBox.Text;
+            string klucz = kluczVigenerTextBox.Text;
+
+            string wynik = szyfrujVigener(tekstJawny, klucz);
+
+            szyfrogramVigenerTextBox.Text = wynik;
+        }
+
+        private void deszyfrujVigenerButton_Click(object sender, RoutedEventArgs e)
+        {
+            string klucz = kluczVigenerTextBox.Text;
+            StringBuilder odwroconyKlucz = new();
+
+            // wygenerowanie przeciwnych liter w kluczu, by odszyfrować
+            for(int i = 0; i < klucz.Length; ++i)
+                odwroconyKlucz.Append((char)('A' + ((26 - (klucz[i] - 'A')) % 26)));
+
+            // syfrowanie z odwróconym kluczem
+            string wynik = szyfrujVigener(szyfrogramVigenerTextBox.Text, odwroconyKlucz.ToString());
+            tekstJawnyVigenerTextBox.Text = wynik;
         }
     }
 }

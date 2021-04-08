@@ -19,7 +19,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <Label Margin="10">Tekst jawny:</Label>
                 <TextBox Name="tekstJawnyRailFenceTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
 
@@ -109,6 +109,76 @@
 
                 <Button Name="szyfrujPrzestawieniaCButton" Click="szyfrujPrzestawieniaCButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
                 <Button Name="deszyfrujPrzestawieniaCButton" Click="deszyfrujPrzestawieniaCButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Cezar">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyCezarTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <GroupBox Header="Klucz" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Margin="10">a:</Label>
+                        <TextBox Name="kluczACezarTextBox" Grid.Column="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+                        <Label Margin="10" Grid.Column="2">b:</Label>
+                        <TextBox Name="kluczBCezarTextBox" Grid.Column="3"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+                        <Label Margin="10" Grid.Column="4">n:</Label>
+                        <TextBox Name="kluczNCezarTextBox" Grid.Column="5"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                    </Grid>
+                </GroupBox>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramCezarTextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujCezarButton" Click="szyfrujCezarButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujCezarButton" Click="deszyfrujCezarButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Szyfr Vigenère'a">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Margin="10">Tekst jawny:</Label>
+                <TextBox Name="tekstJawnyVigenerTextBox" Grid.Column="1" Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="1" Margin="10">Klucz:</Label>
+                <TextBox Name="kluczVigenerTextBox" Grid.Column="1" Grid.Row="1"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Label Grid.Row="2" Margin="10">Szyfrogram:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="szyfrogramVigenerTextBox"  Margin="10" VerticalAlignment="Top" Padding="10"/>
+
+                <Button Name="szyfrujVigenerButton" Click="szyfrujVigenerButton_Click" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="20 5" Margin="10">Szyfruj</Button>
+                <Button Name="deszyfrujVigenerButton" Click="deszyfrujVigenerButton_Click" Grid.Row="3"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="20 5" Margin="10">Deszyfruj</Button>
             </Grid>
         </TabItem>
     </TabControl>
